@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Backend\App\Service;
 
-
 use Backend\Domain\Entity\Fleet;
 use Backend\Domain\Entity\Vehicle;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,7 +22,7 @@ class FleetManager
     /**
      * @param Fleet $fleet
      * @param Vehicle $vehicle
-     * @return void
+     * @return bool
      * @throws \Exception
      */
     public function register(Fleet $fleet, Vehicle $vehicle) : bool

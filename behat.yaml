@@ -1,4 +1,16 @@
 default:
   suites:
     default:
-      contexts: [FeatureContext, ParkVehicleFeatureContext, RegisterVehicleFeatureContext]
+      paths:
+        - Tests/Features
+      contexts:
+        - Tests\Context\FeatureContext
+        - Tests\Context\RegisterVehicleFeatureContext
+        - Tests\Context\ParkVehicleFeatureContext
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      kernel:
+        path: Backend/Kernel.php
+        class: Backend\Kernel
+        environment: test
+      bootstrap: 'config/behat/bootstrap.php'

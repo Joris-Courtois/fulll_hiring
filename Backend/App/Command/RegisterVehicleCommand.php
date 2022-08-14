@@ -68,7 +68,7 @@ class RegisterVehicleCommand extends Command
         /** @var ?Fleet $fleet */
         $fleet = $fleetRepository->find((int) $fleetId);
 
-        if(!$fleet) {
+        if (!$fleet) {
             $output->writeln('<error>No fleet with fleetId :' . $fleetId . '</error>');
 
             return Command::FAILURE;
@@ -85,7 +85,7 @@ class RegisterVehicleCommand extends Command
 
         $registrationSuccess = $this->fleetManager->register($fleet, $vehicle);
 
-        if(false === $registrationSuccess) {
+        if (false === $registrationSuccess) {
             $output->writeln('<error>The vehicle has already been registered in this fleet</error>');
 
             return Command::FAILURE;

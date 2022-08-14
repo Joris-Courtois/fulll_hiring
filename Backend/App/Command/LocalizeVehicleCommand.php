@@ -58,7 +58,7 @@ class LocalizeVehicleCommand extends Command
         /** @var ?Fleet $fleet */
         $fleet = $fleetRepository->find((int) $fleetId);
 
-        if(!$fleet) {
+        if (!$fleet) {
             $output->writeln('<error>No fleet with fleetId :' . $fleetId . '</error>');
 
             return Command::FAILURE;

@@ -49,7 +49,7 @@ class CreateFleetCommand extends Command
 
         $userId = $input->getArgument('userId');
 
-        if(!is_numeric($userId) || 1 > (int) $userId ) {
+        if (!is_numeric($userId) || 1 > (int) $userId) {
             $output->writeln('<error>UserId is not a valid number</error>');
 
             return Command::FAILURE;
@@ -80,7 +80,7 @@ class CreateFleetCommand extends Command
 
         $this->entityManager->flush();
 
-        $output->writeln($fleet->getId());
+        $output->writeln((string) $fleet->getId());
 
         return Command::SUCCESS;
     }

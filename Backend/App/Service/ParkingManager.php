@@ -19,7 +19,12 @@ class ParkingManager
         $this->entityManager = $entityManager;
     }
 
-    public function park(Vehicle $vehicle, Location $location)
+    /**
+     * @param Vehicle $vehicle
+     * @param Location $location
+     * @return bool
+     */
+    public function park(Vehicle $vehicle, Location $location): bool
     {
         if ($vehicle->getLocation() === $location) {
             echo "The vehicle is already parked at this location";

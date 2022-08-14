@@ -70,7 +70,7 @@ class RegisterVehicleFeatureContext implements Context
         $myFleet = $this->featureContext->getMyFleet();
 
         if (!$myFleet->hasVehicle($vehicle)) {
-            throw new \Exception ("The vehicle is not in my fleet");
+            throw new \Exception("The vehicle is not in my fleet");
         }
     }
 
@@ -90,8 +90,7 @@ class RegisterVehicleFeatureContext implements Context
      */
     public function iShouldBeInformedThisThisVehicleHasAlreadyBeenRegisteredIntoMyFleet()
     {
-        if(false !== $this->registerResult)
-        {
+        if (false !== $this->registerResult) {
             throw new \Exception();
         }
     }
@@ -106,5 +105,4 @@ class RegisterVehicleFeatureContext implements Context
 
         $this->fleetManager->register($anotherFleet, $vehicle);
     }
-
 }
