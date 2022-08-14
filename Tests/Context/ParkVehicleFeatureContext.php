@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Backend\App\ParkingManager;
-use Backend\Domain\Location;
-use Backend\Domain\Vehicle;
+namespace Tests\Context;
+
+use Backend\App\Service\ParkingManager;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Behat\Behat\Tester\Exception\PendingException;
+use Symfony\Component\DependencyInjection\Container;
 
 class ParkVehicleFeatureContext implements Context
 {
@@ -26,9 +26,14 @@ class ParkVehicleFeatureContext implements Context
      */
     private $parkResult;
 
-    public function __construct()
+    /**
+     * @var Container
+     */
+    private $container;
+
+    public function __construct(ParkingManager $parkingManager)
     {
-        $this->parkingManager = new ParkingManager();
+        $this->parkingManager = $parkingManager;
     }
 
     /** @BeforeScenario */
@@ -36,7 +41,7 @@ class ParkVehicleFeatureContext implements Context
     {
         $environment = $scope->getEnvironment();
 
-        $this->featureContext = $environment->getContext('FeatureContext');
+        $this->featureContext = $environment->getContext('Tests\Context\FeatureContext');
     }
 
     /**

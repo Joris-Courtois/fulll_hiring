@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-use Backend\App\FleetManager;
-use Backend\Domain\Fleet;
-use Backend\Domain\Vehicle;
+namespace Tests\Context;
+
+use Backend\App\Service\FleetManager;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Behat\Behat\Tester\Exception\PendingException;
-
 
 class RegisterVehicleFeatureContext implements Context
 {
@@ -27,9 +25,10 @@ class RegisterVehicleFeatureContext implements Context
      */
     private $featureContext;
 
-    public function __construct()
+    public function __construct(FleetManager $fleetManager)
     {
-        $this->fleetManager = new FleetManager();
+
+        $this->fleetManager = $fleetManager;
     }
 
     /** @BeforeScenario */
@@ -37,7 +36,7 @@ class RegisterVehicleFeatureContext implements Context
     {
         $environment = $scope->getEnvironment();
 
-        $this->featureContext = $environment->getContext('FeatureContext');
+        $this->featureContext = $environment->getContext('Tests\Context\FeatureContext');
     }
 
     /**
