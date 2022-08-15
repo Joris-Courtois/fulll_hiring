@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Algo\FizzBuzz;
+namespace Algo;
 
 class FizzBuzz
 {
