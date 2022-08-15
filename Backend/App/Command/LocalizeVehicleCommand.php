@@ -142,7 +142,7 @@ class LocalizeVehicleCommand extends Command
         $location = $locationRepository->findOneBy(['latitude' => $lat, 'longitude' => $lng]);
 
         if (!$location) {
-            $output->writeln('<error>No location known with theses coordinates</error>');
+            $output->writeln('<error>No location known with these coordinates</error>');
 
             return Command::FAILURE;
         }

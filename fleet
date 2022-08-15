@@ -1,0 +1,14 @@
+#!/bin/bash
+
+case $1 in
+  'create')
+  echo 'here'
+  /usr/bin/php  bin/console fleet:create $2
+  ;;
+  'register-vehicle')
+  /usr/bin/php bin/console fleet:register-vehicle $2 $3
+  ;;
+  'localize-vehicle')
+  /usr/bin/php bin/console fleet:localize-vehicle $2 $3 $4 $5
+  ;;
+esac
