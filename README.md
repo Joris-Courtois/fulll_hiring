@@ -23,7 +23,7 @@ I also used the `friends-of-behat/symfony-extension` to inject these services in
 
 Behat will use its own database defined in the `.env.test` file. Before testing each feature, the database is droped.
 
-The database is managed with the Doctrine ORM. I added 4 entities in `src/Domain/Entity`. The database is defined in the .env file.
+The database is managed with the Doctrine ORM. I added 4 entities in `src/Domain/Entity`. The database is defined in the `.env` file.
 
 I did not use custom repositories because I did not need custom query to answer the achieve these objective. As a result, the folder `src\Infra` is empty.
 
@@ -58,6 +58,6 @@ I also created a shell script that launches the symfony commands.
 I added PHPCodeSniffer to make sure my code is compatible with the PSR-2 standard and PHPStan to ensure my code quality. 
 I also added PHPUnit to add some Unit Tests. 
 
-In a CI/CD process, I will add these programs, to be sure that the online repository contains tested code, that meet the standards. 
+In a CI/CD process, I will add these programs, to be sure that the online repository contains tested code, that meets the standards. 
 
 I will also run Behat to be sure that the project provides the features needed.
