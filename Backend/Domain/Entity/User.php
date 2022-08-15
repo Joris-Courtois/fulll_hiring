@@ -27,7 +27,7 @@ class User
 
     /**
      * @var Fleet
-     * @ORM\OneToOne(targetEntity="Backend\Domain\Entity\Fleet", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="Backend\Domain\Entity\Fleet", inversedBy="user", cascade={"all"})
      * @ORM\JoinColumn(nullable=true)
      */
     protected $fleet;

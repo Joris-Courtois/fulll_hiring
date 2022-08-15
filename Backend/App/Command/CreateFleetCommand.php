@@ -72,10 +72,9 @@ class CreateFleetCommand extends Command
             return Command::FAILURE;
         }
 
-        $fleet = new Fleet;
+        $fleet = new Fleet();
         $user->setFleet($fleet);
 
-        $this->entityManager->persist($fleet);
         $this->entityManager->persist($user);
 
         $this->entityManager->flush();

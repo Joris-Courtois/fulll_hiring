@@ -43,16 +43,9 @@ class FeatureContext implements Context
     private $entityManager;
 
 
-    public function __construct(KernelInterface $kernel)
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $container = $kernel->getContainer();
-        /** @var EntityManagerInterface $entityManager */
-        $this->entityManager = $container->get('doctrine.orm.entity_manager');
-
-        $schemaTool = new SchemaTool($this->entityManager);
-        $schemaTool->dropDatabase();
-        $metadata = $this->entityManager->getMetadataFactory()->getAllMetadata();
-        $schemaTool->createSchema($metadata);
+        $this->entityManager = $entityManager;
     }
 
     /**

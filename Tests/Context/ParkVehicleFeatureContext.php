@@ -7,7 +7,9 @@ namespace Tests\Context;
 use Backend\App\Service\ParkingManager;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ParkVehicleFeatureContext implements Context
 {
@@ -24,16 +26,26 @@ class ParkVehicleFeatureContext implements Context
     /**
      * @var bool
      */
-    private $parkResult;
+    private $parkingResult;
 
-    /**
-     * @var Container
-     */
+    /** @var ContainerInterface */
     private $container;
 
-    public function __construct(ParkingManager $parkingManager)
+    public function __construct(ParkingManager $parkingManager, ContainerInterface $container)
     {
         $this->parkingManager = $parkingManager;
+        $this->container = $container;
+    }
+
+    /** @BeforeScenario  */
+    public function resetDatabase()
+    {
+        $entityManager = $this->container->get('doctrine.orm.entity_manager');
+
+        $schemaTool = new SchemaTool($entityManager);
+        $schemaTool->dropDatabase();
+        $metadata = $entityManager->getMetadataFactory()->getAllMetadata();
+        $schemaTool->createSchema($metadata);
     }
 
     /** @BeforeScenario */
@@ -52,7 +64,11 @@ class ParkVehicleFeatureContext implements Context
         $vehicle = $this->featureContext->getVehicle();
         $location = $this->featureContext->getLocation();
 
-        $this->parkingManager->park($vehicle, $location);
+        $this->parkingResult = $this->parkingManager->park($vehicle, $location);
+
+        if (!$this->parkingResult) {
+            throw new \Exception('Impossible to park my vehicle at this location');
+        }
     }
 
     /**
@@ -76,7 +92,11 @@ class ParkVehicleFeatureContext implements Context
         $vehicle = $this->featureContext->getVehicle();
         $location = $this->featureContext->getLocation();
 
-        $this->parkingManager->park($vehicle, $location);
+        $this->parkingResult = $this->parkingManager->park($vehicle, $location);
+
+        if (!$this->parkingResult) {
+            throw new \Exception('Impossible to park my vehicle at this location');
+        }
     }
 
     /**
@@ -87,7 +107,7 @@ class ParkVehicleFeatureContext implements Context
         $vehicle = $this->featureContext->getVehicle();
         $location = $this->featureContext->getLocation();
 
-        $this->parkResult = $this->parkingManager->park($vehicle, $location);
+        $this->parkingResult = $this->parkingManager->park($vehicle, $location);
     }
 
     /**
@@ -95,8 +115,10 @@ class ParkVehicleFeatureContext implements Context
      */
     public function iShouldBeInformedThatMyVehicleIsAlreadyParkedAtThisLocation()
     {
-        if (false !== $this->parkResult) {
-            throw new \Exception("The vehicle can't be parked twice at the same location");
+        if (false !== $this->parkingResult) {
+            throw new \Exception(
+                "I am not informed that this vehicle can't be parked twice at the same location"
+            );
         }
     }
 }

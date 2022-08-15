@@ -7,6 +7,8 @@ namespace Tests\Context;
 use Backend\App\Service\FleetManager;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Doctrine\ORM\Tools\SchemaTool;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class RegisterVehicleFeatureContext implements Context
 {
@@ -25,10 +27,24 @@ class RegisterVehicleFeatureContext implements Context
      */
     private $featureContext;
 
-    public function __construct(FleetManager $fleetManager)
-    {
+    /** @var ContainerInterface */
+    private $container;
 
+    public function __construct(FleetManager $fleetManager, ContainerInterface $container)
+    {
         $this->fleetManager = $fleetManager;
+        $this->container = $container;
+    }
+
+    /** @BeforeScenario  */
+    public function resetDatabase()
+    {
+        $entityManager = $this->container->get('doctrine.orm.entity_manager');
+
+        $schemaTool = new SchemaTool($entityManager);
+        $schemaTool->dropDatabase();
+        $metadata = $entityManager->getMetadataFactory()->getAllMetadata();
+        $schemaTool->createSchema($metadata);
     }
 
     /** @BeforeScenario */
@@ -47,7 +63,11 @@ class RegisterVehicleFeatureContext implements Context
         $vehicle = $this->featureContext->getVehicle();
         $myFleet = $this->featureContext->getMyFleet();
 
-        $this->fleetManager->register($myFleet, $vehicle);
+        $this->registerResult = $this->fleetManager->register($myFleet, $vehicle);
+
+        if (!$this->registerResult) {
+            throw new \Exception('Error when registering the vehicle in this fleet');
+        }
     }
 
     /**
@@ -58,7 +78,7 @@ class RegisterVehicleFeatureContext implements Context
         $vehicle = $this->featureContext->getVehicle();
         $myFleet = $this->featureContext->getMyFleet();
 
-        $this->fleetManager->register($myFleet, $vehicle);
+        $this->registerResult = $this->fleetManager->register($myFleet, $vehicle);
     }
 
     /**
@@ -69,7 +89,7 @@ class RegisterVehicleFeatureContext implements Context
         $vehicle = $this->featureContext->getVehicle();
         $myFleet = $this->featureContext->getMyFleet();
 
-        if (!$myFleet->hasVehicle($vehicle)) {
+        if (!$myFleet->hasVehicle($vehicle) || !$this->registerResult) {
             throw new \Exception("The vehicle is not in my fleet");
         }
     }
@@ -91,7 +111,7 @@ class RegisterVehicleFeatureContext implements Context
     public function iShouldBeInformedThisThisVehicleHasAlreadyBeenRegisteredIntoMyFleet()
     {
         if (false !== $this->registerResult) {
-            throw new \Exception();
+            throw new \Exception("I am not informed that this vehicle is already in my fleet");
         }
     }
 
@@ -103,6 +123,10 @@ class RegisterVehicleFeatureContext implements Context
         $vehicle = $this->featureContext->getVehicle();
         $anotherFleet = $this->featureContext->getAnotherFleet();
 
-        $this->fleetManager->register($anotherFleet, $vehicle);
+        $this->registerResult = $this->fleetManager->register($anotherFleet, $vehicle);
+
+        if (!$this->registerResult) {
+            throw new \Exception('Impossible to register this vehicle to another fleet');
+        }
     }
 }
