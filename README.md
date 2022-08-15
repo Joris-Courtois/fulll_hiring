@@ -21,7 +21,7 @@ I created 2 services to manage the fleet and the localization :
 
 I also used the `friends-of-behat/symfony-extension` to inject these services in the context files. 
 
-Behat will use its own database defined in the .env.test file. Before testing each feature, the database is droped.
+Behat will use its own database defined in the `.env.test` file. Before testing each feature, the database is droped.
 
 The database is managed with the Doctrine ORM. I added 4 entities in `src/Domain/Entity`. The database is defined in the .env file.
 
