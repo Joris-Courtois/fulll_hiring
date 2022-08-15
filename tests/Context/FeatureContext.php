@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Context;
 
-use Backend\Domain\Entity\User;
+use Domain\Entity\User;
 use Behat\Behat\Context\Context;
-use Backend\Domain\Entity\Vehicle;
-use Backend\Domain\Entity\Location;
-use Backend\Domain\Entity\Fleet;
+use Domain\Entity\Vehicle;
+use Domain\Entity\Location;
+use Domain\Entity\Fleet;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Component\HttpKernel\KernelInterface;

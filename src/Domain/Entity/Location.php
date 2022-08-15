@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Backend\Domain\Entity;
+namespace Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -34,7 +34,7 @@ class Location
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Backend\Domain\Entity\Vehicle", mappedBy="location")
+     * @ORM\OneToMany(targetEntity="Domain\Entity\Vehicle", mappedBy="location")
      */
     protected $vehicles;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Backend\Domain\Entity;
+namespace Domain\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,13 +23,13 @@ class Fleet
 
     /**
      * @var User
-     * @ORM\OneToOne(targetEntity="Backend\Domain\Entity\User", mappedBy="fleet")
+     * @ORM\OneToOne(targetEntity="Domain\Entity\User", mappedBy="fleet")
      */
     protected $user;
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Backend\Domain\Entity\Vehicle", inversedBy="fleets", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Domain\Entity\Vehicle", inversedBy="fleets", cascade={"persist"})
      */
     protected $vehicles;
 

@@ -15,8 +15,11 @@
   },
   "autoload": {
     "psr-4": {
-      "Backend\\": "Backend/",
-      "Tests\\": "Tests/",
+      "Backend\\": "src/",
+      "App\\": "src/App/",
+      "Domain\\": "src/Domain/",
+      "Infra\\": "src/Infra/",
+      "Tests\\": "tests/",
       "Algo\\": "Algo/"
     }
   },

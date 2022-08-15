@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 
-namespace Backend\App\Command;
+namespace App\Command;
 
-use Backend\App\Service\FleetManager;
-use Backend\Domain\Entity\Fleet;
-use Backend\Domain\Entity\Vehicle;
+use App\Service\FleetManager;
+use Domain\Entity\Fleet;
+use Domain\Entity\Vehicle;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

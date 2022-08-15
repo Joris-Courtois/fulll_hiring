@@ -3,16 +3,15 @@
 declare(strict_types=1);
 
 
-namespace Backend\App\Command;
+namespace App\Command;
 
-use Backend\Domain\Entity\Fleet;
-use Backend\Domain\Entity\Location;
-use Backend\Domain\Entity\Vehicle;
+use Domain\Entity\Fleet;
+use Domain\Entity\Location;
+use Domain\Entity\Vehicle;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class LocalizeVehicleCommand extends Command

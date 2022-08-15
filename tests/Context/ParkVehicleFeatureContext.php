@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Context;
 
-use Backend\App\Service\ParkingManager;
+use App\Service\ParkingManager;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Doctrine\ORM\Tools\SchemaTool;

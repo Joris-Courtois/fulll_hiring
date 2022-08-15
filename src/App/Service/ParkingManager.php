@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 
-namespace Backend\App\Service;
+namespace App\Service;
 
-use Backend\Domain\Entity\Location;
-use Backend\Domain\Entity\Vehicle;
+use Domain\Entity\Location;
+use Domain\Entity\Vehicle;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ParkingManager

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Backend\Domain\Entity;
+namespace Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,7 +27,7 @@ class User
 
     /**
      * @var Fleet
-     * @ORM\OneToOne(targetEntity="Backend\Domain\Entity\Fleet", inversedBy="user", cascade={"all"})
+     * @ORM\OneToOne(targetEntity="Domain\Entity\Fleet", inversedBy="user", cascade={"all"})
      * @ORM\JoinColumn(nullable=true)
      */
     protected $fleet;

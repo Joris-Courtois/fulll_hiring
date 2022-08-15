@@ -1,3 +1,3 @@
 kernel:
-    resource: ../../Backend/Kernel.php
+    resource: ../../src/Kernel.php
     type: annotation

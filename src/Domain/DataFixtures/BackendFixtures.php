@@ -1,11 +1,11 @@
 <?php
 
-namespace Backend\Domain\DataFixtures;
+namespace Domain\DataFixtures;
 
-use Backend\Domain\Entity\Fleet;
-use Backend\Domain\Entity\Location;
-use Backend\Domain\Entity\User;
-use Backend\Domain\Entity\Vehicle;
+use Domain\Entity\Fleet;
+use Domain\Entity\Location;
+use Domain\Entity\User;
+use Domain\Entity\Vehicle;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 

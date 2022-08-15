@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Backend\App\Command;
+namespace App\Command;
 
-use Backend\Domain\Entity\Fleet;
-use Backend\Domain\Entity\User;
+use Domain\Entity\Fleet;
+use Domain\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

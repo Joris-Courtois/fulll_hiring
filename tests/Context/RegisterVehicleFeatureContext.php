@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Context;
 
-use Backend\App\Service\FleetManager;
+use App\Service\FleetManager;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Doctrine\ORM\Tools\SchemaTool;

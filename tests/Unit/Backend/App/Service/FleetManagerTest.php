@@ -5,31 +5,32 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Backend\App\Service;
 
-use Backend\Domain\Entity\Location;
-use Backend\Domain\Entity\Vehicle;
+use Domain\Entity\Fleet;
+use Domain\Entity\Vehicle;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Backend\App\Service\ParkingManager;
+use App\Service\FleetManager;
 
-class ParkingManagerTest extends TestCase
+class FleetManagerTest extends TestCase
 {
+    /** @var FleetManager */
+    protected $fleetManager;
+
     /** @var EntityManager|MockObject */
     protected $entityManager;
-
-    /** @var ParkingManager */
-    protected $parkingManager;
 
     public function setUp(): void
     {
         $this->entityManager = $this->createMock(EntityManager::class);
 
-        $this->parkingManager = new ParkingManager($this->entityManager);
+        $this->fleetManager = new FleetManager($this->entityManager);
     }
 
-    public function testParkSuccess(): void
+
+    public function testRegisterSuccess(): void
     {
-        $location = new Location();
+        $fleet = new Fleet();
         $vehicle = new Vehicle();
 
         $this->entityManager
@@ -42,16 +43,16 @@ class ParkingManagerTest extends TestCase
             ->method('flush')
         ;
 
-        $result = $this->parkingManager->park($vehicle, $location);
+        $result = $this->fleetManager->register($fleet, $vehicle);
 
         $this->assertSame(true, $result);
     }
 
-    public function testParkFail(): void
+    public function testRegisterFail(): void
     {
-        $location = new Location();
+        $fleet = new Fleet();
         $vehicle = new Vehicle();
-        $vehicle->setLocation($location);
+        $fleet->addVehicle($vehicle);
 
         $this->entityManager
             ->expects($this->never())
@@ -63,10 +64,8 @@ class ParkingManagerTest extends TestCase
             ->method('flush')
         ;
 
-        $result = $this->parkingManager->park($vehicle, $location);
+        $result = $this->fleetManager->register($fleet, $vehicle);
 
         $this->assertSame(false, $result);
     }
-
-
 }

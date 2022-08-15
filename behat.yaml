@@ -10,7 +10,7 @@ default:
   extensions:
     FriendsOfBehat\SymfonyExtension:
       kernel:
-        path: Backend/Kernel.php
+        path: src/Kernel.php
         class: Backend\Kernel
         environment: test
       bootstrap: 'config/behat/bootstrap.php'

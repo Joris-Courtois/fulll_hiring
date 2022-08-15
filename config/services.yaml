@@ -11,18 +11,14 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    # makes classes in Backend/ available to be used as services
+    # makes classes in App/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    Backend\:
-        resource: '../Backend/'
-        exclude:
-            - '../Backend/DependencyInjection/'
-            - '../Backend/Domain/'
-            - '../Backend/Kernel.php'
+    App\:
+        resource: '../src/App/'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    Backend\Domain\DataFixtures\:
-        resource: '../Backend/Domain/DataFixtures/*'
+    Domain\DataFixtures\:
+        resource: '../src/Domain/DataFixtures/*'
         tags: [ doctrine.fixture.orm ]

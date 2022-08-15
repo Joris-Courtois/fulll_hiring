@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Backend\Domain\Entity;
+namespace Domain\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -28,14 +28,14 @@ class Vehicle
 
     /**
      * @var Location
-     * @ORM\ManyToOne(targetEntity="Backend\Domain\Entity\Location", inversedBy="vehicles", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Domain\Entity\Location", inversedBy="vehicles", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     protected $location;
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Backend\Domain\Entity\Fleet", mappedBy="vehicles", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Domain\Entity\Fleet", mappedBy="vehicles", cascade={"persist"})
      */
     protected $fleets;
 
