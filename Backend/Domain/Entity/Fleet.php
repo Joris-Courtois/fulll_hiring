@@ -57,6 +57,24 @@ class Fleet
     }
 
     /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return Fleet
+     */
+    public function setUser(User $user): Fleet
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getVehicles(): ArrayCollection

@@ -85,6 +85,7 @@ class User
     public function setFleet(?Fleet $fleet): User
     {
         $this->fleet = $fleet;
+        $this->fleet->setUser($this);
 
         return $this;
     }

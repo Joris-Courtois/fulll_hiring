@@ -76,7 +76,6 @@ class CreateFleetCommand extends Command
         $user->setFleet($fleet);
 
         $this->entityManager->persist($user);
-
         $this->entityManager->flush();
 
         $output->writeln((string) $fleet->getId());
