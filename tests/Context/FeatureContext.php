@@ -10,8 +10,6 @@ use Domain\Entity\Vehicle;
 use Domain\Entity\Location;
 use Domain\Entity\Fleet;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Tools\SchemaTool;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  * Defines application features from the specific context.

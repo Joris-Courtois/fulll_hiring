@@ -4,7 +4,7 @@ services:
         autoconfigure: true
 
     Tests\Context\:
-        resource: '../Tests/Context/*'
+        resource: '../tests/Context/*'
 
     Tests\Context\FeatureContext:
         public: true
