@@ -22,10 +22,16 @@ class BackendFixtures extends Fixture
         $user2->setUsername("Toto");
 
 
-        $location = new Location();
-        $location
+        $location1 = new Location();
+        $location1
             ->setLatitude(43.4850378)
             ->setLongitude(5.3758588)
+        ;
+
+        $location2 = new Location();
+        $location2
+            ->setLatitude(43.4928829)
+            ->setLongitude(5.3515993)
         ;
 
         $vehicle1 = new Vehicle();
@@ -33,16 +39,15 @@ class BackendFixtures extends Fixture
 
         $vehicle2 = new Vehicle();
         $vehicle2->setPlateNumber("AA-456-BB");
-        $vehicle2->setLocation($location);
+        $vehicle2->setLocation($location1);
 
         $fleet->addVehicle($vehicle2);
 
         $manager->persist($user1);
         $manager->persist($user2);
-        $manager->persist($fleet);
         $manager->persist($vehicle1);
         $manager->persist($vehicle2);
-        $manager->persist($location);
+        $manager->persist($location2);
 
         $manager->flush();
     }
